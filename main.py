@@ -9,7 +9,7 @@ st.title("🔍 Demo IA: Análisis de Comentarios")
 uploaded_file = st.file_uploader("📤 Sube un archivo CSV con comentarios", type="csv")
 
 if uploaded_file:
-    df = pd.read_csv(uploaded_file, quotechar='"')
+    df = pd.read_csv(uploaded_file, delimiter=';', quotechar='"')
     if "comentario" not in df.columns:
         st.error("❌ El archivo debe tener una columna llamada 'comentario'")
     else:
