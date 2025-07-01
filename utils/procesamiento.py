@@ -1,6 +1,8 @@
 import requests
 import re
 import json
+import google.generativeai as genai
+
 
 def analizar_comentario(comentario: str):
     prompt = f"""
@@ -13,14 +15,11 @@ Devuelve:
 }}
  . Solo devolver un sentimiento y un tema pora el comentario el que sea el mas apropiado"""
     try:
-        url = "http://localhost:11434/api/generate"
-        payload = {
-            "model": "llama3",
-            "prompt": prompt,
-            "stream": False
-        }
-        response = requests.post(url, json=payload)
-        content = response.json()["response"]
+
+        genai.configure(api_key="AIzaSyCaViyXrQfxM4xomFDxvGh7HORWrnE_I-U")
+        model = genai.GenerativeModel('gemini-2.5-flash')
+        response = model.generate_content(f"{prompt}")
+        content = response.text
         # Busca el bloque JSON dentro de la respuesta del modelo
         json_match = re.search(r'\{.*?\}', content, re.DOTALL)
         if json_match:
