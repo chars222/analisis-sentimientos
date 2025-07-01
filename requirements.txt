@@ -3,3 +3,4 @@ pandas
 requests
 matplotlib
 google-generativeai
+python-dotenv

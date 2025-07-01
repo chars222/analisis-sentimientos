@@ -1,8 +1,9 @@
-import requests
 import re
 import json
 import google.generativeai as genai
-
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
 def analizar_comentario(comentario: str):
     prompt = f"""
@@ -16,7 +17,7 @@ Devuelve:
  . Solo devolver un sentimiento y un tema pora el comentario el que sea el mas apropiado"""
     try:
 
-        genai.configure(api_key="AIzaSyCaViyXrQfxM4xomFDxvGh7HORWrnE_I-U")
+        genai.configure(api_key=os.getenv("MODEL_API_KEY"))
         model = genai.GenerativeModel('gemini-2.5-flash')
         response = model.generate_content(f"{prompt}")
         content = response.text
