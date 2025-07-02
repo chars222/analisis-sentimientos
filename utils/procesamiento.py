@@ -63,7 +63,7 @@ def get_analysis_from_gemini(comment):
     import json
 
     genai.configure(api_key=os.getenv("MODEL_API_KEY"))
-    model = genai.GenerativeModel('gemini-2.5-flash')
+    model = genai.GenerativeModel('gemini-1.5-flash-latest')
     response = model.generate_content(f"{prompt}")
     cleaned_text = response.text.replace('```json', '').replace('```', '')
     cleaned_text = cleaned_text.strip()
