@@ -1,3 +1,4 @@
 # .gitignore
 .streamlit/secrets.toml
 .env
+.image
