@@ -24,7 +24,7 @@ if uploaded_file is not None:
     df_completo  = pd.read_csv(uploaded_file, delimiter=';', quotechar='"')
     if len(df_completo ) > 100:
         st.warning(f"El archivo cargado contiene {len(df_completo )} comentarios. Solo se procesarán los primeros 100.")
-    df_limitado = df_completo .head(15)
+    df_limitado = df_completo .head(100)
     if 'comentario' in df_limitado.columns:
         # Procesar los comentarios si aún no han sido analizados
         if 'tema' not in df_limitado.columns or 'sentimiento' not in df_limitado.columns:
